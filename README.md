@@ -16,7 +16,7 @@ EnvyControl is free and open-source software released under the [MIT](https://gi
 
 ### ⚠️ Disclaimer
 
-**This software is provided 'as-is' without any express or implied warranty.** 
+**This software is provided 'as-is' without any express or implied warranty.**
 
 Keep it mind any custom X.org configuration may get deleted or overwritten when switching modes, please review this README and the source code before proceeding.
 
@@ -26,11 +26,12 @@ EnvyControl should work on any distribution of Linux, see [tested distros](https
 
 **If you're using Ubuntu or its derivatives please follow [these instructions](https://github.com/bayasdev/envycontrol/wiki/Frequently-Asked-Questions#instructions-for-ubuntu-and-its-derivatives).**
 
-### 🖥️ Supported display managers 
+### 🖥️ Supported display managers
 
 - GDM
 - SDDM
 - LightDM
+- XDM
 
 If your display manager isn't currently supported by EnvyControl you might have to [manually configure it](https://github.com/bayasdev/envycontrol/wiki/Frequently-Asked-Questions#what-to-do-if-my-display-manager-is-not-supported).
 
@@ -63,8 +64,8 @@ Please run `sudo envycontrol --reset-sddm`.
 ### From source
 
 1. Clone this repository with `git clone https://github.com/bayasdev/envycontrol.git` or download the latest tarball from the releases page.
-2. Run `sudo python envycontrol.py -s <MODE>` from the root of the repository to switch to a different graphics mode. 
- 
+2. Run `sudo python envycontrol.py -s <MODE>` from the root of the repository to switch to a different graphics mode.
+
 ### Install globally as a pip package
 
 - From the root of the cloned repository run `sudo pip install .`
@@ -82,7 +83,7 @@ options:
                         switch the graphics mode, supported modes: integrated, hybrid, nvidia
   -q, --query           query the current graphics mode set by EnvyControl
   --dm DISPLAY_MANAGER  Manually specify your Display Manager. This is required only for systems without systemd.
-                        Supported DMs: gdm, sddm, lightdm
+                        Supported DMs: gdm, sddm, lightdm, xdm
   --reset               remove EnvyControl settings
   --reset-sddm          restore original SDDM Xsetup file
 ```
