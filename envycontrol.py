@@ -251,7 +251,7 @@ def _switcher(mode, display_manager = ''):
                 enable_coolbits = True
             else:
                 enable_coolbits = False
-             choice = input('Add nvidia modules to initramfs? (y/N): ').lower()
+                choice = input('Add nvidia modules to initramfs? (y/N): ').lower()
             if choice in yes:
                 enable_load_early = True
             else:
@@ -381,7 +381,7 @@ def _setup_display_manager(display_manager):
         subprocess.run(['chmod','+x',LIGHTDM_SCRIPT_PATH], stdout=subprocess.DEVNULL)
         # create config
         _create_file(LIGHTDM_CONFIG_PATH, LIGHTDM_CONFIG_CONTENT)
-        elif display_manager == 'xdm':
+    elif display_manager == 'xdm':
         if igpu_vendor == "amd":
             amd_name = _get_amd_igpu_name()
             _append_to_file(XSETUP_NVIDIA_XRANDR_SCRIPT_PATH, XSETUP_NVIDIA_XRANDR_SCRIPT.format(amd_name))
@@ -391,8 +391,7 @@ def _setup_display_manager(display_manager):
         print('Error: provided Display Manager is not valid')
         print('Supported Display Managers: gdm, sddm, lightdm, xdm')
         sys.exit(1)
-
- def _add_nvidia_modules_to_initramfs():
+def _add_nvidia_modules_to_initramfs():
     # Debian and Ubuntu derivatives
     if os.path.exists('/etc/debian_version'):
         _append_to_file(NVIDIA_INITRAMFS_MODULES_PATH, NVIDIA_INITRAMFS_MODULES_CONTENT)
