@@ -8,7 +8,7 @@ import logging
 
 # begin constants definition
 
-VERSION = '3.0.0'
+VERSION = '3.2.0'
 
 BLACKLIST_PATH = '/etc/modprobe.d/blacklist-nvidia.conf'
 
@@ -361,16 +361,15 @@ def get_nvidia_gpu_pci_bus():
 def get_igpu_vendor():
     lspci_output = subprocess.check_output(["lspci"]).decode('utf-8')
     for line in lspci_output.splitlines():
-        if 'VGA compatible controller' in line:
+        if 'VGA compatible controller' in line or 'Display controller' in line:
             if 'Intel' in line:
                 logging.info("Found Intel iGPU")
                 return 'intel'
             elif 'ATI' in line or 'AMD' in line or 'AMD/ATI' in line:
                 logging.info("Found AMD iGPU")
                 return 'amd'
-            else:
-                logging.warning("Could not find Intel or AMD iGPU")
-                return None
+    logging.warning("Could not find Intel or AMD iGPU")
+    return None
 
 
 def get_display_manager():
@@ -432,7 +431,7 @@ def rebuild_initramfs():
         command = ['dracut', '--force', '--regenerate-all']
     # EndeavourOS with dracut
     elif os.path.exists('/usr/lib/endeavouros-release') and os.path.exists('/usr/bin/dracut'):
-        command = ['dracut', '--force', '--regenerate-all']
+        command = ['dracut-rebuild']
     else:
         command = []
 
